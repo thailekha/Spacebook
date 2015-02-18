@@ -1,0 +1,41 @@
+<section>
+<div class="ui compact segment">
+#{list items:post.comments, as:'comment'}
+	<div class="ui comments">
+		<div class="comment">
+			<a class="avatar">
+				<img src="/profile/getpicture/${comment.commenter.id}">
+			</a>
+		<div class="content">
+			<a class="author">${comment.commenter.firstName + " " + comment.commenter.lastName}</a>
+			<div class="metadata">
+				<div class="date">${comment.date}</div>
+			</div>
+		<div class="text">
+			<p>${comment.commentText}</p>
+		</div>
+		#{if (fullVersion)}
+			<div class="ui delete icon">
+				<a href="/blog/post/deletecomment/${comment.id}">Delete</a>
+			</div>
+		#{/if}
+		</div>
+		</div>  
+#{/list}
+		<form action="/blog/post/comment/${post.id}" method="POST" class="ui compact reply form">
+			<div class="field">
+				<textarea name="commentText"></textarea>
+			</div>
+			<button class="ui primary submit labeled icon button">
+				<i class="icon edit"></i> Add Comment
+			</button>
+			#{if (!fullVersion)}
+			<div class="ui active dimmer">
+				<div class="ui medium text loader">Log in to leave comments</div>
+			</div>
+			#{/if}
+		</form>
+	</div>
+</div>
+</section>
+

@@ -1,0 +1,47 @@
+<section id="section" class="ui inverted two column grid">
+    #{list items:users, as:'user'}
+    <div class="column">
+    <div class="ui inverted ${user.theme} stacked segment">
+        <div class="content">
+          <div class="ui header">
+          	<img class="ui avatar image" src="/profile/getpicture/${user.id}" data-content="${user.statusText}">
+          	<div class="ui ${user.theme} big label">${user.firstName} ${user.lastName}</div>
+          	#{if (user.online)}
+    	  <div id="memberonline" class="ui dropdown">
+    		<div class="text">
+         		Online
+			</div>
+			#{/if}
+			#{else}
+			<div id="memberoffline" class="ui dropdown">
+    		<div class="text">
+        		Offline
+        	</div>
+        	#{/else}
+    		<i class="dropdown icon"></i>
+    		<div class="menu">
+     			<a href="members/follow/${user.id}" class="item">
+      				Follow
+      			</a>
+    		</div>
+  		</div>  
+  		</div>
+  		#{if user.posts.size() == 0}
+  		<div class="ui label">
+        	<div class="ui tiny ${user.theme} header">No posts yet</div>
+        </div>
+        #{/if}
+        #{else}
+        	#{list items:user.posts, as:'post'}
+        		<div class="ui label">
+        			<a class="ui tiny ${user.theme} header" id="postsinlist" href="/blog/post/${post.id}">${post.title}</a>
+        		</div>
+        	#{/list}  
+        #{/else}
+  	</div>
+  	</div>
+  	</div>
+  	</div>
+    #{/list} 
+</section>
+

@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Profile' /}
+#{set profile:'active' /}
+
+#{include "components/navigation.html" /} 
+
+<h1 class="ui ${user.theme} massive circular label" >${user.firstName} ${user.lastName}'s Profile</h1>
+<section class="ui two column grid">
+  <div class="row">
+    <div class="column">
+      #{include "components/profiledetails.html" /} 
+    </div>
+    <div class="column">
+
+    </div>
+  </div>
+</section>

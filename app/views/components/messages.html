@@ -1,0 +1,44 @@
+<section class="ui segment">
+  #{if user.inbox.size() > 0}
+    <table class="ui inverted ${user.theme} table">
+      <thead>
+        <tr>
+          <th>From</th>
+          <th></th>
+          <th>Message</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        #{list items:user.inbox, as:'message'}
+          <tr>
+            <td>
+              <div class="ui small image">
+                <img width="40" src="/profile/getpicture/${message.from.id}">
+              </div>
+            </td>
+            <td>
+               <a class="ui label" href="/publicprofile/${message.from.id}"> ${message.from.firstName}</a>
+             </td>
+             <td> 
+                ${message.messageText}
+              </td>
+              
+              <td>
+              #{if (message.from.online)}
+         		<div class="ui green label">online</div>
+         	  #{/if}
+         	  #{else}
+         		<div class="ui red label">offline</div>
+         	  #{/else}
+              </td>
+              
+          </tr>
+        #{/list}
+      </tbody>
+    </table>  
+  #{/if}
+  #{else}
+  	<p> No messages
+  #{/else}
+</section>

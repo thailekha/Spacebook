@@ -1,0 +1,63 @@
+#{extends 'main.html' /}
+#{set title:'Edit Details' /}
+#{set edit:'active' /}
+
+#{include "components/navigation.html" /}
+
+<section class="ui two column middle aligned grid raised form segment">
+  <div class="column">
+    <img src="/public/images/simpsons3.gif" class="ui large image">
+  </div>
+  <div class="column">
+	  <form action="/editprofile/change" method="POST">
+	  	<div class="two fields">
+	  		<div class="field">
+	  			<div class="ui selection dropdown">
+    				<input type="hidden" name="theme">
+    				<div class="default text">Theme color</div>
+    				<i class="dropdown icon"></i>
+    					<div class="menu">
+      						<div class="item" data-value="blue">Blue</div>
+      						<div class="item" data-value="green">Green</div>
+      						<div class="item" data-value="orange">Orange</div>
+      						<div class="item" data-value="pink">Pink</div>
+      						<div class="item" data-value="purple">Purple</div>
+      						<div class="item" data-value="red">Red</div>
+      						<div class="item" data-value="teal">Teal</div>
+      						<div class="item" data-value="yellow">Yellow</div>
+    					</div>
+ 				 </div>
+	  		</div>
+	  	</div>
+	    <div class="two fields">
+	      <div class="field">
+	        <label>First Name</label>
+	        <input placeholder="First Name" type="text" name="firstName" value="${user.firstName}">
+	      </div>
+	      <div class="field">
+	        <label>Last Name</label>
+	        <input placeholder="Last Name" type="text" name="lastName" value="${user.lastName}">
+	      </div>
+	    </div>
+	    <div class="two fields">
+	      <div class="field">
+	        <label>Nationality</label>
+	        <input placeholder="Nationality" type="text" name="nationality" value="${user.nationality}">
+	      </div>
+	      <div class="field">
+	        <label>Age</label>
+	        <input placeholder="Age" type="text" name="age"value="${user.age}">
+	      </div>
+	    </div>    <div class="field">
+	      <label>Email</label>
+	      <input placeholder="Email" type="text" name="email" value="${user.email}">
+	    </div>
+	    <div class="field">
+	      <label>Password</label>
+	      <input type="password" name="password">
+	    </div>
+	    <button class="ui ${user.theme} submit button">Submit</button>
+	  </form>
+  </div>	  
+
+</section>

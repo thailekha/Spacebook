@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'Blog' /}
+#{set blog:'active' /}
+
+#{include "components/navigation.html" /}
+ 
+<h1 class="ui ${user.theme} massive circular label" >Blog  </h1>
+  <div class="row">
+  	<div class="ui ${user.theme} top attached tabular menu">
+  	<a class="active ${user.theme} item" data-tab="first">
+    		<i class="ui ${user.theme} header">Create Post</i>
+    	</a>
+    	<a class="${user.theme} item" data-tab="second">
+    		<i class="ui ${user.theme} header">Published Posts</i>
+    	</a>
+    </div>
+    <div class="ui bottom attached active tab segment" data-tab="first">
+  		#{include "components/createpost.html" /}
+  	</div>
+  	<div class="ui bottom attached tab segment" data-tab="second">
+		#{include "components/displayposts.html" /}
+	</div>
+  </div>

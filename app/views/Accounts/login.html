@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'Login to Spacebook' /}
+
+<nav class="ui large inverted menu">
+  <header class="header item"> Spacebook </header>
+  <div class="right menu">
+    <a class="item" href="/signup"> Signup  </a>
+    <a class="active item" href="/login"> Login  </a>
+  </div>
+</nav> 
+
+<section class="ui two column middle aligned grid raised form segment">
+  <div class="column">
+	  <form action="/authenticate" method="POST">
+	    <div class="field">
+	      <label> Username: </label>
+	      <input type="text" name="email">
+	    </div>  
+	    <div class="field">
+	      <label>  Password: </label>
+	      <input type="password" name="password">
+	    </div>
+	    <button class="ui blue submit button">Login</button>
+	  </form>
+  </div>
+  <div class="column">
+    <div class="ui four column grid">
+  #{list items:users, as:'user'}
+  	#{if (user.posts.size() != 0)}
+  		<div class="column">
+  			<div class="ui tertiary compact segment">
+  			<p>
+  				<img height="80" width="80" src="/profile/getpicture/${user.id}">
+  			</p>
+  				<div class="ui blue small labeled icon dropdown button">
+  					<i class="large write square icon"></i>
+        				${user.firstName}
+        			<div class="menu">
+         					#{if user.posts.size() == 0}
+         						No posts yet
+         					#{/if}
+         					#{else}
+          						#{list items:user.posts, as:'post'}
+          						<div class="item">
+        							<a class="item" href="/blog/post/${post.id}">${post.title}</a>
+        						</div>
+        						#{/list}  
+        					#{/else}
+        			</div>
+      			</div>	
+  			</div>	
+  		</div>
+  	#{/if}
+  #{/list}
+  	</div>
+  </div>
+</section>

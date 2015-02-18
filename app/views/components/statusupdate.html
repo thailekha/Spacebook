@@ -1,0 +1,15 @@
+<section class="ui segment">
+  <h4 class="ui ${user.theme} block header"> What are you thinking ?</h4>
+  <div class="ui huge inverted ${user.theme} label">
+    <p> ${user.statusText} </p>
+  </div>
+  <br><br>
+   <section>
+    <form action="/profile/changestatus" method="POST">
+      <div class="field">
+        <textarea name="statusText"></textarea>
+      </div>
+      <button class="ui ${user.theme} button submit labeled icon"><i class="icon edit"></i> Update </button>
+    </form>
+  </section>
+</section>  

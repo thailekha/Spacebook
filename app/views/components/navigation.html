@@ -1,0 +1,17 @@
+<nav class="ui ${user.theme} inverted menu">
+  <header class="header item"> Spacebook </header>
+  <div class="right menu">
+    <a class="#{get 'home' /} item" href="/home">Home</a>
+    <a class="#{get 'members' /} item" href="/members">Members</a>   
+    <a class="#{get 'blog' /} item" href="/blog/${user.id}">Blog</a> 
+    <div class="ui dropdown item">
+        ${user.firstName} <i class="icon dropdown"></i>
+        <div class="menu">
+          <a class="#{get 'profile' /} item" href="/profile"><i class="user icon"></i>Profile</a>
+          <a class="#{get 'edit' /} item" href="/editprofile"><i class="setting icon"></i> Edit Profile</a>
+          <a class="item" href="/logout"><i class="sign out icon"></i>Logout</a>
+        </div>
+      </div>    
+  </div>
+</nav> 
+

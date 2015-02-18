@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Welcome to Spacebook' /}
+
+<nav class="ui inverted menu">
+  <header class="header item"> Spacebook </header>
+  <div class="right menu">
+    <a class="item" href="/signup"> Signup  </a>
+    <a class="item" href="/login">  Login   </a>
+  </div>
+</nav>
+
+<section class="ui  transparent raised segment">
+  <p> Signup or Log in to the Spacebook Service </p>
+    <div class="ui five column grid">
+  #{list items:users, as:'user'}
+  	#{if (user.posts.size() != 0)}
+  		<div class="column">
+  			<div class="ui segment">
+  			<img height="50" width="50" src="/profile/getpicture/${user.id}">
+  				<a href="/blog/${user.id}">${user.firstName} ${user.lastName}'s blog</a>	
+  			</div>	
+  		</div>
+  	#{/if}
+  #{/list}
+  	</div>
+</section>

@@ -1,0 +1,13 @@
+  <section class="ui compact segment">
+    <label class="ui ${user.theme} big label">Profile Image</label>
+    <img class="ui large rounded bordered image" src="/profile/getpicture/${user.id}">
+ 
+  <div class="ui compact raised form segment">
+    <form action="/profile/uploadpicture/${user.id}" method="post" enctype="multipart/form-data">     
+      <div class="ui field">
+        <input type="file" name="picture">  </input> 
+     </div>     
+     <button class="ui ${user.theme} submit button"> Upload</button>       
+    </form>      
+   </div>  
+  </section>

@@ -1,0 +1,19 @@
+#{extends 'main.html' /} 
+#{set title:'Post' /} 
+
+#{if (fullVersion)}
+	#{include "components/navigation.html" /}
+#{/if}
+#{else}
+	#{include "components/demonavigation.html" /}
+#{/else}
+
+<h1 class="ui ${user.theme} massive circular label" > ${post.postOwner.firstName}'s Post  </h1>
+<section id="postview" class="ui segment">
+<h4 class="ui medium ${user.theme} header">${post.title.toUpperCase()}</h4>
+	<div class="ui yellow segment">
+		${post.content}
+	<div class="ui horizontal divider">Comments</div>
+		#{include "components/commentpost.html" /}
+	</div>
+</section>

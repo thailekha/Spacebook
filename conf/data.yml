@@ -1,0 +1,65 @@
+
+User(lisa):
+    firstName: Lisa
+    lastName: Simpson
+    email: lisa@simpson.com
+    password: secret
+    
+User(marge):
+    firstName: Marge
+    lastName: Simpson
+    email: marge@simpson.com
+    password: secret
+
+User(homer):
+    firstName: Homer
+    lastName: Simpson
+    email: homer@simpson.com
+    password: secret
+
+User(bart):
+    firstName: Bart
+    lastName: Simpson
+    email: bart@simpson.com
+    password: secret
+
+User(maggie):
+    firstName: Maggie
+    lastName: Simpson
+    email: maggie@simpson.com
+    password: secret
+    
+Message(message1):
+    from : marge
+    to   : homer
+    messageText: 'how are things going?'
+    
+Message(message2):
+    from : lisa
+    to   : homer
+    messageText: 'Get me outta here!'
+    
+Friendship(homer-marge): 
+    sourceUser : homer
+    targetUser : marge
+    
+Friendship(marge-homer): 
+    sourceUser : marge
+    targetUser : homer    
+    
+User(homer):
+    firstName  : Homer
+    lastName   : Simpson
+    email      : homer@simpson.com
+    password   : secret
+    friendships:
+              - homer-marge    
+              
+User(marge):
+    firstName  : Marge
+    lastName   : Simpson
+    email      : marge@simpson.com
+    password   : secret
+    friendships:
+              - marge-homer 
+                           

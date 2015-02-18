@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{set home: 'active' /}
+
+#{include "components/navigation.html" /}
+
+<h1 class="ui ${user.theme} massive circular label" >${user.firstName} ${user.lastName}</h1>
+<section id="section" class="ui two column grid">
+  <div class="row">
+    <div class="ui column">
+      #{include "components/profileimage.html" /}
+    </div>
+    <div class="column">
+      <div class="ui ${user.theme} top attached tabular menu">
+    	<a class="active ${user.theme} item" data-tab="first">
+    		<i class="ui ${user.theme} header">Status</i>
+    	</a>
+    	<a class="${user.theme} item" data-tab="second">
+    		<i class="ui ${user.theme} header">Friends</i>
+    	</a>
+    	<a class="${user.theme} item" data-tab="third">
+    		<i class="ui ${user.theme} header">Messages</i>
+    	</a>
+  	  </div>
+	<div class="ui bottom attached active tab segment" data-tab="first">
+    	#{include "components/statusupdate.html" /}
+  	</div>
+	<div class="ui bottom attached tab segment" data-tab="second">
+    	#{include "components/friends.html" /}
+  	</div>
+	<div class="ui bottom attached tab segment" data-tab="third">
+    	#{include "components/messages.html" /}
+  	</div>
+    </div>
+  </div>
+</section>
+

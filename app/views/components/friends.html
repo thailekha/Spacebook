@@ -1,0 +1,12 @@
+<section class="ui stacked segment">
+  <h4 class="ui ${user.theme} block header">Your Friends (${user.friendships.size()})</h4>
+  <div class="ui list"> 
+    #{list items:user.friendships, as:'friendship'}
+      <div class="ui item"> 
+       <img class="ui avatar image" src="/profile/getpicture/${friendship.targetUser.id}">
+        <a href="/publicprofile/${friendship.targetUser.id}"> ${friendship.targetUser.firstName} ${friendship.targetUser.lastName} </a>
+        (<a href="/home/drop/${friendship.targetUser.id}"> drop </a>)
+      </div>
+    #{/list}
+  </div> 
+</section>  

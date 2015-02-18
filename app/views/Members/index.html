@@ -1,0 +1,15 @@
+#{extends 'main.html' /} 
+#{set title:'Members' /} 
+#{set members:'active' /}
+
+#{include "components/navigation.html" /}
+
+<h1 class="ui ${user.theme} massive circular label" >Spacebook Members</h1>
+
+#{include "components/members.html" /} 
+
+<script>
+$('.avatar.image')
+  .popup()
+;
+</script>

@@ -1,0 +1,98 @@
+@CHARSET "ISO-8859-1";
+
+body
+{
+	width: 90%;
+	background-color:black;
+	background-image: url("http://www.wallwill.com/wp-content/uploads/2014/09/pictures%20of%20neon%20colors-bpux.jpg");
+}
+
+body section
+{
+	margin-top:6%;
+}
+
+nav
+{
+	width: 93%;
+}
+
+#bigheader
+{
+	font-size:3.8em;
+	font-weight:bold;
+	font-family:Monospace;
+}
+
+#landpage
+{
+	background-image: url("../images/venom.jpg");
+	background-repeat: no-repeat;
+	font-family:Monospace;
+	font-weight:bold;
+}
+
+#spacebookheader
+{
+	
+	text-decoration: none;
+	margin: 0; 
+	font-size: 9.8em;
+	color: white;
+}
+
+#login
+{
+	margin-left:44.8%;
+	text-decoration: none;
+	font-size: 8em;
+	color: white;
+}
+
+#signup
+{
+	margin-left:10%;
+	text-decoration: none;
+	font-size: 3em;
+	color: black;
+}
+
+#memberonline
+{
+	margin-left:1.5em;;
+	background-color: #7AAAE0;
+	border-left: 3px solid #7EDFFF;
+	border-right: 3px solid #7EDFFF;
+	padding: 2px;
+}
+
+#memberonline div
+{
+	background-color: #7AAAE0;
+}
+
+#memberoffline
+{
+	margin-left:1.5em;;
+	background-color: #70ab8f;
+	border-left: 3px solid #7EDFFF;
+	border-right: 3px solid #7EDFFF;
+	padding: 2px;
+}
+
+#memberoffline div
+{
+	background-color: #70ab8f;
+}
+
+
+#postsinlist
+{
+	text-decoration:none;
+	color: black;
+}		
+
+#postview
+{
+	width:93%;
+}

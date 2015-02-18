@@ -1,0 +1,8 @@
+<section class="ui segment">
+  #{list items:user.posts, as:'post'}
+    <p>	<i class="big write square icon"></i>
+    	<a href="/blog/post/${post.id}">${post.title}</a> 
+    	<a href="/blog/deletepost/${post.id}"><i class="large red remove circle icon"></i></a>
+   	</p>
+  #{/list}
+</section>
