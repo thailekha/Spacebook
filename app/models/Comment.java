@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name="`Comment`")
 public class Comment extends Model {
 
 	public String date;

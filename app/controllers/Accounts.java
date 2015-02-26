@@ -9,13 +9,27 @@ public class Accounts extends Controller
 {
   public static void signup()
   {
-    render();
+	if (session.contains("logged_in_userid"))
+	{
+		Home.index();
+	}
+	else
+	{
+		render();
+	}
   }
 
   public static void login()
   {
-	List<User> users = User.findAll();
-    render(users);
+	  if (session.contains("logged_in_userid"))
+		{
+			Home.index();
+		}
+		else
+		{
+			List<User> users = User.findAll();
+			render(users);
+		}
   }
 
   public static void logout()
@@ -31,7 +45,14 @@ public class Accounts extends Controller
 
   public static void index()
   {
-    render();
+	  if (session.contains("logged_in_userid"))
+		{
+			Home.index();
+		}
+		else
+		{
+			render();
+		}
   }
 
   public static User getLoggedInUser()
