@@ -40,7 +40,7 @@ public class User extends Model
   @OneToMany(mappedBy = "from")
   public List<Message> outbox = new ArrayList<Message>();
   
-  @OneToMany
+  @OneToMany(mappedBy = "postOwner")
   public List<Post> posts = new ArrayList<Post>();
   
   
