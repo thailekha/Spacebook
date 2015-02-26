@@ -28,8 +28,8 @@ public class User extends Model
   //public boolean fullAccess = false; 
   public String theme ="";
   
-  @OneToMany(mappedBy = "commenter")
-  public List<Comment> comments = new ArrayList<Comment>();
+  @OneToMany
+  public List<Comment> commentsUser = new ArrayList<Comment>();
   
   @OneToMany(mappedBy = "sourceUser")
   public List<Friendship> friendships = new ArrayList<Friendship>();

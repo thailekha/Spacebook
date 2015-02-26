@@ -10,9 +10,9 @@ import java.util.Date;
 
 public class Blog  extends Controller
 {
-  public static void index(Long id)
+  public static void index()
   {
-    User user = User.findById(id);
+    User user = Accounts.getLoggedInUser();
     render(user);
   }
   
@@ -43,20 +43,32 @@ public class Blog  extends Controller
     postOwner.save();
     
     Logger.info ("title:" + title + " content:" + content);
-    index(postOwner.id);
+    index();
   }
   
-  public static void deletePost(Long postid)
+  public static void deletePost(Long id)
   {    
-    User user = Accounts.getLoggedInUser(); 
-
-    Post post = Post.findById(postid);
+    Post post = Post.findById(id);
+    List<Comment> commentsInDatabase = Comment.find("byPostHost", post).fetch();
+    for(Comment comment: commentsInDatabase)
+    {
+  	  User commenter = comment.commenter; 
+  	  Post postHost = comment.postHost;
+  	  
+  	  commenter.commentsUser.remove(comment);
+  	  commenter.save();
+  	  postHost.comments.remove(comment);
+  	  postHost.save();
+  	 
+  	  comment.delete();
+    }
+    
+    User user = Accounts.getLoggedInUser();
     user.posts.remove(post);
-
     user.save();
     post.delete();
 
-    index(user.id);
+    index();
   }
   
   public static void comment(Long id, String commentText)
@@ -70,26 +82,53 @@ public class Blog  extends Controller
 	  
 	  Comment comment = new Comment(commenter, postHost, commentText, dateString);
 	  comment.save();
-	  postHost.comments.add(comment);
+	  postHost.comments.add(comment);	  
 	  postHost.save();
+	  
+	  boolean commentExisted = false;
+	  for(Comment cmt: commenter.commentsUser)
+	  {
+		  if(cmt.equals(comment))
+		  {
+			  commentExisted = true;
+		  }
+	  }
+	  if(!commentExisted)
+	  {
+		  commenter.commentsUser.add(comment);
+		  commenter.save();
+	  }
 	  
 	  Logger.info("Number of comments: " + postHost.comments.size() 
 			  + ", New comment from " + comment.commenter.firstName + " : " + comment.commentText);
 	  indexPost(id);
   }
   
+  public static void deleteCmt(Long id)
+  {
+	  Comment comment = Comment.findById(id);
+	  User commenter = comment.commenter; 
+	  Post postHost = comment.postHost;
+	  
+	  commenter.commentsUser.remove(comment);
+	  commenter.save();
+	  postHost.comments.remove(comment);
+	  postHost.save();
+	 
+	  comment.delete();
+  }
+  
   public static void deleteComment(Long id)
   {
 	  Comment comment = Comment.findById(id);
-	  User user = Accounts.getLoggedInUser(); 
+	  User commenter = comment.commenter; 
 	  Post postHost = comment.postHost;
 	  
-	  user.comments.remove(comment);
+	  commenter.commentsUser.remove(comment);
+	  commenter.save();
 	  postHost.comments.remove(comment);
-	  
-	  user.save();
 	  postHost.save();
-	  
+	 
 	  comment.delete();
 	  indexPost(postHost.id);
   }

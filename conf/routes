@@ -38,10 +38,10 @@ GET     /publicprofile/{id}                     PublicProfile.visit
 POST    /publicprofile/sendmessage/{id}         PublicProfile.sendMessage
 
 # Blog
-GET   /blog/{id}                                Blog.index
+GET   /blog		                                Blog.index
 POST  /blog/newpost                             Blog.newPost
 POST  /blog/post/comment/{id}					Blog.comment
-GET   /blog/deletepost/{postid}                	Blog.deletePost
+GET   /blog/deletepost/{id}	                	Blog.deletePost
 
 #Post
 GET	  /blog/post/{id}							Blog.indexPost

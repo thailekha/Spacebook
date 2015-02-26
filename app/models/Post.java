@@ -2,6 +2,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -17,8 +18,8 @@ public class Post extends Model
   @ManyToOne
   public User postOwner;
   
-  @OneToMany
-  public List<Comment> comments = new ArrayList<Comment>();;
+  @OneToMany (cascade=CascadeType.ALL) 
+  public List<Comment> comments = new ArrayList<Comment>();
   
   @Lob
   public String content;
@@ -30,6 +31,11 @@ public class Post extends Model
     this.content = content;
   }
 
+  public void cleanComments()
+  {
+	  comments.clear();
+  }
+  
   public String toString()
   {
     return title;

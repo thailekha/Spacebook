@@ -17,7 +17,10 @@ public class EditProfile extends Controller
     user.email = email;
     user.nationality = nationality;
     user.age = age;
-    user.password = password;
+    if(!password.equals(""))
+    {
+    	user.password = password;
+    }
     user.save();
     Profile.index();
   }
