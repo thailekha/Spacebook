@@ -44,7 +44,7 @@ POST  /blog/post/comment/{id}					Blog.comment
 GET   /blog/deletepost/{id}	                	Blog.deletePost
 
 #Post
-GET	  /blog/post/{id}							Blog.indexPost
+GET	  /blog/post/{id}							Blog.indexpost
 GET	  /blog/post/deletecomment/{id}				Blog.deleteComment
 
 

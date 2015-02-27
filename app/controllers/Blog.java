@@ -16,7 +16,7 @@ public class Blog  extends Controller
     render(user);
   }
   
-  public static void indexPost(Long id)
+  public static void indexpost(Long id)
   {
 	 Post post = Post.findById(id);
 	 User user = null;
@@ -101,7 +101,7 @@ public class Blog  extends Controller
 	  
 	  Logger.info("Number of comments: " + postHost.comments.size() 
 			  + ", New comment from " + comment.commenter.firstName + " : " + comment.commentText);
-	  indexPost(id);
+	  indexpost(id);
   }
   
   public static void deleteCmt(Long id)
@@ -130,6 +130,6 @@ public class Blog  extends Controller
 	  postHost.save();
 	 
 	  comment.delete();
-	  indexPost(postHost.id);
+	  indexpost(postHost.id);
   }
 }

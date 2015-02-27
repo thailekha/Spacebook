@@ -1,13 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Public Profile Page' /}
 
-<nav class="ui ${user.theme} menu">
-  <div class="left menu">
-    <a class="item" href="/home">Home</a></li>
-  </div>
-</nav> 
+#{include "components/demonavigation.html" /} 
 
-<h1 class="ui ${user.theme} block header" >${user.firstName} ${user.lastName}'s Profile</h1>
+<h1 class="ui ${user.theme} massive circular label" >${user.firstName} ${user.lastName}'s Profile</h1>
 <section class="ui  two column grid">
   <div class="row">
     <div class="column">

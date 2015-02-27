@@ -1,6 +1,22 @@
-<section class="ui stacked segment">
-  <a href="/editprofile" class="ui ${user.theme} button"> Edit </a>
-  <table class="ui table segment">
+<section class="ui segment">
+  <div class="ui compact segment">
+  <div class="ui medium image">
+    <label class="ui ribbon label">
+    	<a class="ui ${user.theme} header">Thumbnail Image</a>
+    </label>
+    <img src="/profile/getthumbnail/${user.id}">
+  </div>
+  <section class="ui form">
+    <form action="/profile/uploadthumbnail/${user.id}" method="post" enctype="multipart/form-data">     
+      <div class="ui field">
+        <input type="file" name="picture"></input> 
+     </div>     
+     <button class="ui ${user.theme} submit button"> Upload</button>       
+    </form>        
+  </section>  
+  </div> 
+
+  <table class="ui inverted ${user.theme} table segment">
     <thead>
       <tr>
         <th>Email</th>
@@ -17,16 +33,5 @@
     </tbody>
   </table>
 
-  <div class="ui medium image">
-    <label class="ui ${user.theme} ribbon label">Thumbnail Image</label>
-    <img src="/profile/getthumbnail/${user.id}">
-  </div>
-  <section class="ui raised form segment">
-    <form action="/profile/uploadthumbnail/${user.id}" method="post" enctype="multipart/form-data">     
-      <div class="ui field">
-        <input type="file" name="picture">  </input> 
-     </div>     
-     <button class="ui ${user.theme} submit button"> Upload</button>       
-    </form>        
-  </section>      
+   
 </section>  
