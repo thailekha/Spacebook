@@ -7,7 +7,7 @@ import models.User;
 import play.Logger;
 import play.mvc.Controller;
 import java.util.Date;
-
+ 
 public class Blog  extends Controller
 {
   public static void index()
