@@ -64,8 +64,6 @@ public class Accounts extends Controller
       String userId = session.get("logged_in_userid");
       user = User.findById(Long.parseLong(userId));
       //user.fullAccess = true;
-      user.online = true;
-      user.save();
     }
     else
     {
