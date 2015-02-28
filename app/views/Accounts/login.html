@@ -24,6 +24,7 @@
 	  </form>
   </div>
   <div class="column">
+  #{if (!noPost)}
     <div class="ui four column grid">
   #{list items:users, as:'user'}
   	#{if (user.posts.size() != 0)}
@@ -52,6 +53,10 @@
   		</div>
   	#{/if}
   #{/list}
+  #{/if}
+  #{else}
+  	<img src="/public/images/simpsons1.gif" class="ui large image">
+  #{/else}
   	</div>
   </div>
 </section>

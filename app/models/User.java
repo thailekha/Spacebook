@@ -67,8 +67,19 @@ public class User extends Model
   public void befriend(User friend)
   {
     Friendship friendship = new Friendship(this, friend);
-    friendships.add(friendship);
-    friendship.save();
+    boolean addable = true;
+    for (Friendship friendshipInList:friendships)
+    {
+    	if(friendshipInList.targetUser == friendship.targetUser)
+    	{
+    		addable = false;
+    	}
+    }
+    if(addable)
+    {
+    	friendships.add(friendship);
+    	friendship.save();
+    }
     save();
   }
 

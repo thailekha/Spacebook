@@ -22,7 +22,7 @@ public class EditProfile extends Controller
     	user.password = password;
     }
     user.save();
-    Profile.index();
+    Home.index();
   }
 
   public static void index()

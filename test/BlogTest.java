@@ -4,6 +4,7 @@ import java.util.List;
 import models.Message;
 import models.Post;
 import models.User;
+import models.Comment;
 
 import org.junit.After;
 import org.junit.Before;
@@ -115,4 +116,47 @@ public class BlogTest extends UnitTest
     User anotherUser = User.findByEmail("bob@jones.com");
     assertEquals(0, anotherUser.posts.size());   
    }
+  
+  @Test
+  public void testDeletePostThatHasComments()
+  {
+	Post postToDel = new Post("Post To Delete", "The content", bob); 
+	postToDel.save();
+	User mary = new User("mary", "colllins", "mary@collins.com", "secret", 20, "irish");
+    mary.save();
+	Comment comment1 = new Comment(bob, postToDel, "text1", "randomDate");
+	comment1.save();
+	Comment comment2 = new Comment(mary, postToDel, "text2", "randomDate");
+	comment2.save();
+	
+	List<Comment> cmts1 = Comment.find("byCommenter", bob).fetch();
+	Comment cmt1 = cmts1.get(0);
+	List<Comment> cmts2 = Comment.find("byCommenter", mary).fetch();
+	Comment cmt2 = cmts2.get(0);
+	List<Post> bobPosts = Post.find("byPostOwner", bob).fetch();
+    Post postToDelete = bobPosts.get(0);
+    
+    postToDelete.comments.remove(cmt1);
+    postToDelete.comments.remove(cmt2);
+    postToDelete.save();
+    bob.commentsUser.remove(cmt1);
+    bob.save();
+    mary.commentsUser.remove(cmt2);
+    mary.save();
+    
+    cmt1.delete();
+    cmt2.delete();
+    
+    bobPosts.remove(postToDelete);
+    postToDelete.delete();
+	
+    User mirrorBob = User.findByEmail("bob@jones.com");
+    assertEquals(0, mirrorBob.commentsUser.size());
+    User mirrorMary = User.findByEmail("mary@collins.com");
+    assertEquals(0, mirrorMary.commentsUser.size());
+    List<Post> postsOfBob = Post.find("byPostOwner", mirrorBob).fetch();
+    assertEquals(0, postsOfBob.size());
+    
+    mary.delete();
+  }
 }

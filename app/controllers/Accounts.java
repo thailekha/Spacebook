@@ -28,7 +28,8 @@ public class Accounts extends Controller
 		else
 		{
 			List<User> users = User.findAll();
-			render(users);
+			boolean noPost = Post.findAll().isEmpty();
+			render(users, noPost);
 		}
   }
 

@@ -1,5 +1,7 @@
 package controllers;
+import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 import models.Message;
 import models.Post;
 import models.Comment;
@@ -13,6 +15,7 @@ public class Blog  extends Controller
   public static void index()
   {
     User user = Accounts.getLoggedInUser();
+    Collections.reverse(user.posts);
     render(user);
   }
   
@@ -39,10 +42,10 @@ public class Blog  extends Controller
     
     Post post = new Post (title, content, postOwner);
     post.save();
-    postOwner.posts.add(0, post);
+    postOwner.posts.add(post);
     postOwner.save();
     
-    Logger.info ("title:" + title + " content:" + content);
+    Logger.info ("title:" + title + " content:" + content + ", position: " + postOwner.posts.indexOf(post));
     index();
   }
   
@@ -104,32 +107,22 @@ public class Blog  extends Controller
 	  indexpost(id);
   }
   
-  public static void deleteCmt(Long id)
-  {
-	  Comment comment = Comment.findById(id);
-	  User commenter = comment.commenter; 
-	  Post postHost = comment.postHost;
-	  
-	  commenter.commentsUser.remove(comment);
-	  commenter.save();
-	  postHost.comments.remove(comment);
-	  postHost.save();
-	 
-	  comment.delete();
-  }
-  
   public static void deleteComment(Long id)
   {
+	  User deleter = Accounts.getLoggedInUser();
 	  Comment comment = Comment.findById(id);
 	  User commenter = comment.commenter; 
 	  Post postHost = comment.postHost;
 	  
-	  commenter.commentsUser.remove(comment);
-	  commenter.save();
-	  postHost.comments.remove(comment);
-	  postHost.save();
+	  if(deleter.equals(commenter) || (deleter.equals(postHost.postOwner)))
+	  {
+		  commenter.commentsUser.remove(comment);
+		  commenter.save();
+		  postHost.comments.remove(comment);
+		  postHost.save();
 	 
-	  comment.delete();
+		  comment.delete();
+	  }
 	  indexpost(postHost.id);
   }
 }
